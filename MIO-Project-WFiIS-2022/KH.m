@@ -3,15 +3,15 @@ format long
 % Initial Parameter Setting
 
 NR = 1;                                  % Number if Runs
-NK = 15; 						     	  % Number if Krills
-MI = 3; 		                          % Maximum Iteration
+NK = 3; 						     	  % Number if Krills
+MI = 1; 		                          % Maximum Iteration
 C_flag = 1;                               % Crossover flag [Yes=1]
 % Bounds (Normalize search space in case of highly imbalanced search space)
 NP = length(LB); % Number if Parameter(s)
 Dt = mean(abs(UB-LB))/2; % Scale Factor
 F = zeros(NP,NK);D = zeros(1,NK);N = zeros(NP,NK); %R = zeros(NP,NK);
 Vf = 0.02; Dmax = 0.005; Nmax = 0.01; Sr = 0;
-X_best = ones(1, NP);
+X_best = rand(1, NP);
 % Optimization & Simulation
 for nr = 1:NR
     %Initial Krills positions

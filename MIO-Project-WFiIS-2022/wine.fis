@@ -1,0 +1,159 @@
+[System]
+Name='wine'
+Type='sugeno'
+Version=2.0
+NumInputs=8
+NumOutputs=1
+NumRules=10
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='in1'
+Range=[11.03 14.83]
+NumMFs=10
+MF1='in1cluster1':'gaussmf',[0.4718 12.71]
+MF2='in1cluster2':'gaussmf',[0.6718 13.51]
+MF3='in1cluster3':'gaussmf',[0.6718 11.32]
+MF4='in1cluster4':'gaussmf',[0.67175144212722 14.2]
+MF5='in1cluster5':'gaussmf',[0.3718 11.88]
+MF6='in1cluster6':'gaussmf',[0.5718 11.08]
+MF7='in1cluster7':'gaussmf',[0.2718 11.45]
+MF8='in1cluster8':'gaussmf',[0.4718 12.24]
+MF9='in1cluster9':'gaussmf',[0.1718 12.01]
+MF10='in1cluster10':'gaussmf',[0.8718 14.69]
+
+[Input2]
+Name='in2'
+Range=[0.74 5.8]
+NumMFs=10
+MF1='in2cluster1':'gaussmf',[0.8945 0.86]
+MF2='in2cluster2':'gaussmf',[0.8945 2.73]
+MF3='in2cluster3':'gaussmf',[0.8945 6.24]
+MF4='in2cluster4':'gaussmf',[0.8945 4.76]
+MF5='in2cluster5':'gaussmf',[0.8945 1.99]
+MF6='in2cluster6':'gaussmf',[0.8945 4.13]
+MF7='in2cluster7':'gaussmf',[0.8945 4.4]
+MF8='in2cluster8':'gaussmf',[0.8945 5.59]
+MF9='in2cluster9':'gaussmf',[0.8945 3.65]
+MF10='in2cluster10':'gaussmf',[0.8945 3.53]
+
+[Input3]
+Name='in3'
+Range=[1.36 3.23]
+NumMFs=10
+MF1='in3cluster1':'gaussmf',[0.3306 1.36]
+MF2='in3cluster2':'gaussmf',[0.3306 2.98]
+MF3='in3cluster3':'gaussmf',[0.3306 2.28]
+MF4='in3cluster4':'gaussmf',[0.3306 1.95]
+MF5='in3cluster5':'gaussmf',[0.3306 2]
+MF6='in3cluster6':'gaussmf',[0.330572420204711 2.51]
+MF7='in3cluster7':'gaussmf',[0.3306 2.12]
+MF8='in3cluster8':'gaussmf',[0.3306 1.87]
+MF9='in3cluster9':'gaussmf',[0.3306 1.45]
+MF10='in3cluster10':'gaussmf',[0.3306 2.76]
+
+[Input4]
+Name='in4'
+Range=[10.6 28.5]
+NumMFs=10
+MF1='in4cluster1':'gaussmf',[3.164 25.6]
+MF2='in4cluster2':'gaussmf',[3.164 17.9]
+MF3='in4cluster3':'gaussmf',[3.164 17.5]
+MF4='in4cluster4':'gaussmf',[3.1643028458098 15.2]
+MF5='in4cluster5':'gaussmf',[3.1643028458098 20]
+MF6='in4cluster6':'gaussmf',[3.1643028458098 24]
+MF7='in4cluster7':'gaussmf',[3.164 23]
+MF8='in4cluster8':'gaussmf',[3.164 24]
+MF9='in4cluster9':'gaussmf',[3.164 16.5]
+MF10='in4cluster10':'gaussmf',[3.164 11.7]
+
+[Input5]
+Name='in5'
+Range=[70 162]
+NumMFs=10
+MF1='in5cluster1':'gaussmf',[16.2634559672906 101]
+MF2='in5cluster2':'gaussmf',[16.26 105]
+MF3='in5cluster3':'gaussmf',[16.2634559672906 92]
+MF4='in5cluster4':'gaussmf',[16.26 122]
+MF5='in5cluster5':'gaussmf',[16.26 64]
+MF6='in5cluster6':'gaussmf',[16.2634559672906 78]
+MF7='in5cluster7':'gaussmf',[16.26 136]
+MF8='in5cluster8':'gaussmf',[17.26 158]
+MF9='in5cluster9':'gaussmf',[16.26 155]
+MF10='in5cluster10':'gaussmf',[16.26 115]
+
+[Input6]
+Name='in6'
+Range=[1.1 3.88]
+NumMFs=10
+MF1='in6cluster1':'gaussmf',[0.4914 3.21]
+MF2='in6cluster2':'gaussmf',[0.4914 2]
+MF3='in6cluster3':'gaussmf',[0.49143921292465 1.93]
+MF4='in6cluster4':'gaussmf',[0.4914 2.97]
+MF5='in6cluster5':'gaussmf',[0.4914 4]
+MF6='in6cluster6':'gaussmf',[0.4914 3.1]
+MF7='in6cluster7':'gaussmf',[0.4914 2.6]
+MF8='in6cluster8':'gaussmf',[0.4914 2.4]
+MF9='in6cluster9':'gaussmf',[0.4914 1.78]
+MF10='in6cluster10':'gaussmf',[0.49143921292465 1.38]
+
+[Input7]
+Name='in7'
+Range=[0.47 5.08]
+NumMFs=10
+MF1='in7cluster1':'gaussmf',[0.8149 1.28]
+MF2='in7cluster2':'gaussmf',[0.8149 0.92]
+MF3='in7cluster3':'gaussmf',[0.8149 4.76]
+MF4='in7cluster4':'gaussmf',[0.814940565317496 3.39]
+MF5='in7cluster5':'gaussmf',[0.8149 2.22]
+MF6='in7cluster6':'gaussmf',[0.814940565317496 1.58]
+MF7='in7cluster7':'gaussmf',[0.8149 1.79]
+MF8='in7cluster8':'gaussmf',[0.8149 6.69]
+MF9='in7cluster9':'gaussmf',[0.8149 4.61]
+MF10='in7cluster10':'gaussmf',[0.8149 2.46]
+
+[Input8]
+Name='in8'
+Range=[0.13 0.66]
+NumMFs=10
+MF1='in8cluster1':'gaussmf',[0.09369 0.67]
+MF2='in8cluster2':'gaussmf',[0.0936916485072175 0.32]
+MF3='in8cluster3':'gaussmf',[0.09369 0.27]
+MF4='in8cluster4':'gaussmf',[0.0936916485072175 0.34]
+MF5='in8cluster5':'gaussmf',[0.09369 0.6]
+MF6='in8cluster6':'gaussmf',[0.09369 0.5]
+MF7='in8cluster7':'gaussmf',[0.09369 0.49]
+MF8='in8cluster8':'gaussmf',[0.09369 0.19]
+MF9='in8cluster9':'gaussmf',[0.09369 0.42]
+MF10='in8cluster10':'gaussmf',[0.09369 0.15]
+
+[Output1]
+Name='out1'
+Range=[1 3]
+NumMFs=10
+MF1='out1cluster1':'linear',[0.416665308658769 -0.117444271659836 -0.375887343106349 -0.00832598989365768 -0.00980055722358366 0.731004329710967 0.22566290147228 -0.629915586160828 -4.83251763622806]
+MF2='out1cluster2':'linear',[0.0960963160425066 0.0356041858374069 0.00467641132674355 -0.0303775989569711 0.0166964339195784 0.214107914553771 0.203055124944578 -0.707480253395436 -0.672311855604791]
+MF3='out1cluster3':'linear',[0.348458912450947 0.45004972372544 0.320083647398907 -0.0389488609638807 0.0186339483834977 0.773249903907816 -1.01200368491194 -2.41548397156107 -4.43226702576011]
+MF4='out1cluster4':'linear',[0.129797175681798 0.238698514675662 1.33389547719638 -0.0889910567655175 0.0301046754392254 0.130506931148993 0.108005659003005 2.39461503868737 -8.15247189799331]
+MF5='out1cluster5':'linear',[1.06424803864555 0.042930039492669 0.352153092112162 -0.0293695892408697 -0.00733681927648176 0.444241775211216 -0.869019125372216 0.918819368447232 -9.92947158386806]
+MF6='out1cluster6':'linear',[-0.298127839106146 0.695475363253188 0.858643175544771 -0.15124544011288 -0.0261663435554824 -0.20653262332809 0.448383635252127 -1.69559072377003 8.69492532543288]
+MF7='out1cluster7':'linear',[-0.195841260985514 0.124536234421212 0.472188223134736 -0.0120684263310807 -0.011762153849675 0.615588323366839 0.15600598465662 -0.520999311993247 2.16386591170664]
+MF8='out1cluster8':'linear',[-0.554388413127682 -0.392466480801335 -1.8156091781389 0.105887413959368 -0.017896259790213 -0.983494822966953 -0.0102431088470325 -1.51437510280553 17.8758371116126]
+MF9='out1cluster9':'linear',[-0.135293809018553 0.922421053627653 -2.70218638210163 -0.0863871452107487 -0.199404545993835 1.88649686361419 -0.811362961058909 19.9527179107929 13.930230014493]
+MF10='out1cluster10':'linear',[1.74364054596193 0.268607705497094 2.3663812839994 0.217832030129255 0.0101842600138397 1.22690953434759 -1.58764790712498 0.475403532023473 -30.8222654638404]
+
+[Rules]
+1 1 1 1 1 1 1 1, 1 (1) : 1
+2 2 2 2 2 2 2 2, 2 (1) : 1
+3 3 3 3 3 3 3 3, 3 (1) : 1
+4 4 4 4 4 4 4 4, 4 (1) : 1
+5 5 5 5 5 5 5 5, 5 (1) : 1
+6 6 6 6 6 6 6 6, 6 (1) : 1
+7 7 7 7 7 7 7 7, 7 (1) : 1
+8 8 8 8 8 8 8 8, 8 (1) : 1
+9 9 9 9 9 9 9 9, 9 (1) : 1
+10 10 10 10 10 10 10 10, 10 (1) : 1

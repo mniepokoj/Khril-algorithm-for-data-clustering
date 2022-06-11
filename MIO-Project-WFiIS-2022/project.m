@@ -15,24 +15,24 @@ KH_t = zeros(it, 1);
 
 % Iris initialize
 
-[dataset, value] = iris_dataset;
-dataset = dataset.';
-value = vec2ind(value)';
-dataset = [dataset, value];
-n = size(dataset, 1);
+
+% [dataset, value] = iris_dataset;
+% dataset = dataset.';
+% value = vec2ind(value)';
+% dataset = [dataset, value];
+% n = size(dataset, 1);
 
 % seeds initialize
-
-% dataset = readmatrix('seeds.csv');
-% n = size(dataset);
+%dataset = readmatrix('seeds.csv');
+%n = size(dataset, 1);
 
 %wine initialize
 
-% [dataset, value] = wine_dataset;
-% dataset = dataset.';
-% value = vec2ind(value)';
-% dataset = [dataset(:,1:7), value];
-% n = size(dataset);
+[dataset, value] = wine_dataset;
+dataset = dataset.';
+value = vec2ind(value)';
+dataset = [dataset([1:50 52:100 102:150 152:end], 1:8), value([1:50 52:100 102:150 152:end])];
+n = size(dataset, 1);
 
 
 dataset = dataset(randperm(size(dataset, 1)), :);
@@ -40,17 +40,18 @@ dataset = dataset(randperm(size(dataset, 1)), :);
 % main loop
 for loop = 1:it
 
-    x_train = dataset([1:n*((loop-1)/it) n*((loop)/it)+1:end], 1:4);
-    y_train = dataset([1:n*((loop-1)/it) n*((loop)/it)+1:end], 5);
+    k = n*((loop)/it);
+    x_train = dataset([1:round(n*((loop-1)/it)) round(n*((loop)/it)+1):end], 1:size(dataset, 2)-1);
+    y_train = dataset([1:round(n*((loop-1)/it)) round(n*((loop)/it)+1):end], size(dataset, 2));
 
-    x_testing = dataset([n*((loop-1)/it)+1:n*((loop)/it)], 1:4);
-    y_testing = dataset([n*((loop-1)/it)+1:n*((loop)/it)], 5);
+    x_testing = dataset([n*((loop-1)/it)+1:n*((loop)/it)], 1:size(dataset, 2)-1);
+    y_testing = dataset([n*((loop-1)/it)+1:n*((loop)/it)], size(dataset, 2));
 
     fprintf('Iteracja: %d\n', loop);
     Description(loop) = convertCharsToStrings(sprintf('Iteracja: %d (%%)', loop));
 
     %%--%%--%% Inicjalizacja FIS
-    fis = readfis('sug41.fis');
+    fis = readfis('wine.fis');
 
     y_out = evalfis(fis, x_train);
     y_test = evalfis(fis, x_testing);
@@ -62,16 +63,16 @@ for loop = 1:it
     end
     temp = y_temp - y_train;
     q = sum(temp == 0);
-    fprintf('Percentage of corectly qualified cases (manual FIS) - teaching set: %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
-    Manual_u(loop) = round(q / size(y_out, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (manual FIS) - teaching set: %.0f%%\n', round(q / size(y_out, 1), size(dataset, 2)) * 100);
+    Manual_u(loop) = round(q / size(y_out, 1), size(dataset, 2)) * 100;
     y_temp = y_test;
     for i = 1:size(y_temp, 1)
         y_temp(i) = round(y_temp(i));
     end
     temp = y_temp - y_testing;
     q = sum(temp == 0);
-    fprintf('Percentage of corectly qualified cases (manual FIS) - testing set: %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
-    Manual_t(loop) = round(q / size(y_test, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (manual FIS) - testing set: %.0f%%\n', round(q / size(y_test, 1), size(dataset, 2)) * 100);
+    Manual_t(loop) = round(q / size(y_test, 1), size(dataset, 2)) * 100;
 
     %%--%%--%% Wykresy wyników (manual FIS)
     figure;
@@ -121,7 +122,7 @@ for loop = 1:it
     end
     temp = y_temp - y_train;
     q = sum(temp == 0);
-    fprintf('Percentage of corectly qualified cases (KH) - teaching set:  %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
+    fprintf('Percentage of corectly qualified cases (KH) - teaching set:  %.0f%%\n', round(q / size(y_out, 1), size(dataset, 2)) * 100);
     KH_u(loop) = round(q / size(y_out, 1), 5) * 100;
 
     y_temp = y_test;
@@ -130,8 +131,8 @@ for loop = 1:it
     end
     temp = y_temp - y_testing;
     q = sum(temp == 0);
-    fprintf('Percentage of corectly qualified cases (KH) - testing set:  %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
-    KH_t(loop) = round(q / size(y_test, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (KH) - testing set:  %.0f%%\n', round(q / size(y_test, 1), size(dataset, 2)) * 100);
+    KH_t(loop) = round(q / size(y_test, 1), size(dataset, 2)) * 100;
 end
 
 Glowna_srednia_Manual = mean(Manual_t)
@@ -176,8 +177,8 @@ for loop = 1:it
     end
     temp = y_temp - y_u;
     q = find(temp == 0);
-    fprintf('Procent dobrze zkwalifikowanych przypadków (SubtractiveClustering FIS) - set uczący: %.3f%%\n', round(size(q, 1) / size(y_out, 1), 5) * 100);
-    SC_u(loop) = round(size(q, 1) / size(y_out, 1), 5) * 100;
+    fprintf('Procent dobrze zkwalifikowanych przypadków (SubtractiveClustering FIS) - set uczący: %.3f%%\n', round(size(q, 1) / size(y_out, 1), size(dataset, 2)) * 100);
+    SC_u(loop) = round(size(q, 1) / size(y_out, 1), size(dataset, 2)) * 100;
 
     y_temp = y_test;
     for i = 1:size(y_temp, 1)
@@ -185,8 +186,8 @@ for loop = 1:it
     end
     temp = y_temp - y_t;
     q = find(temp == 0);
-    fprintf('Procent dobrze zkwalifikowanych przypadków (SubtractiveClustering FIS) - set testujący: %.3f%%\n', round(size(q, 1) / size(y_test, 1), 5) * 100);
-    SC_t(loop) = round(size(q, 1) / size(y_test, 1), 5) * 100;
+    fprintf('Procent dobrze zkwalifikowanych przypadków (SubtractiveClustering FIS) - set testujący: %.3f%%\n', round(size(q, 1) / size(y_test, 1), size(dataset, 2)) * 100);
+    SC_t(loop) = round(size(q, 1) / size(y_test, 1), size(dataset, 2)) * 100;
 end
 
 Glowna_srednia_SC = mean(SC_t)
