@@ -1,10 +1,10 @@
 function [X_best] = KH(fis, LB, UB, cost, x_train, y_train)
 format long
-%% Initial Parameter Setting
+% Initial Parameter Setting
 
 NR = 1;                                  % Number if Runs
 NK = 15; 						     	  % Number if Krills
-MI = 30; 		                          % Maximum Iteration
+MI = 3; 		                          % Maximum Iteration
 C_flag = 1;                               % Crossover flag [Yes=1]
 % Bounds (Normalize search space in case of highly imbalanced search space)
 NP = length(LB); % Number if Parameter(s)
@@ -12,7 +12,7 @@ Dt = mean(abs(UB-LB))/2; % Scale Factor
 F = zeros(NP,NK);D = zeros(1,NK);N = zeros(NP,NK); %R = zeros(NP,NK);
 Vf = 0.02; Dmax = 0.005; Nmax = 0.01; Sr = 0;
 X_best = ones(1, NP);
-%% Optimization & Simulation
+% Optimization & Simulation
 for nr = 1:NR
     %Initial Krills positions
     for z1 = 1:NP
@@ -139,7 +139,7 @@ for nr = 1:NR
         end
     end
 end
-%% Post-Processiwynik1 = cost(X_best, fis, x_u,y_u);
+% Post-Processiwynik1 = cost(X_best, fis, x_u,y_u);
 [Best, Ron_No] = min(Kgb(end,:));
 Xgb(:,end,Ron_No);
 Mean = mean(Kgb(end,:));

@@ -7,13 +7,14 @@ perc = 0.8;
 bound_perc = 0.2;
 it = 5;
 Description = strings(it, 1);
-SC_u = zeros(it, 1);
-PSO_u = zeros(it, 1);
-SC_t = zeros(it, 1);
-PSO_t = zeros(it, 1);
+Manual_u = zeros(it, 1);
+KH_u = zeros(it, 1);
+Manual_t = zeros(it, 1);
+KH_t = zeros(it, 1);
 
 
 % Iris initialize
+
 [dataset, value] = iris_dataset;
 dataset = dataset.';
 value = vec2ind(value)';
@@ -21,17 +22,20 @@ dataset = [dataset, value];
 n = size(dataset, 1);
 
 % seeds initialize
-% dataset = readmatrix('seeds.csv');
-%n = size(dataset);
 
-% wine initialize
+% dataset = readmatrix('seeds.csv');
+% n = size(dataset);
+
+%wine initialize
+
 % [dataset, value] = wine_dataset;
 % dataset = dataset.';
 % value = vec2ind(value)';
 % dataset = [dataset(:,1:7), value];
 % n = size(dataset);
-dataset = dataset(randperm(size(dataset, 1)), :);
 
+
+dataset = dataset(randperm(size(dataset, 1)), :);
 
 % main loop
 for loop = 1:it
@@ -59,32 +63,32 @@ for loop = 1:it
     end
     temp = y_temp - y_train;
     q = sum(temp == 0);
-    fprintf('Percentage of well qualified cases (Subtractive Clustering FIS) - teaching set: %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
-    SC_u(loop) = round(q / size(y_out, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (manual FIS) - teaching set: %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
+    Manual_u(loop) = round(q / size(y_out, 1), 5) * 100;
     y_temp = y_test;
     for i = 1:size(y_temp, 1)
         y_temp(i) = round(y_temp(i));
     end
     temp = y_temp - y_testing;
     q = sum(temp == 0);
-    fprintf('Procent dobrze zkwalifikowanych przypadków (SubtractiveClustering FIS) - set testujący: %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
-    SC_t(loop) = round(q / size(y_test, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (manual FIS) - testing set: %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
+    Manual_t(loop) = round(q / size(y_test, 1), 5) * 100;
 
 
-    %%--%%--%% Wykresy wyników (SubtractiveClustering FIS)
-    % figure;
-    % subplot(2, 1, 1)
-    % scatter(1:n*perc, y_out, 55, 'r', 'd')
-    % hold on;
-    % scatter(1:n*perc, y_u, 'b', 'filled')
-    % legend('ymodel', 'yreal')
-    % title('Zbior uczacy');
-    % subplot(2, 1, 2)
-    % scatter(1:(n - n * perc), y_test, 55, 'r', 'd')
-    % hold on;
-    % scatter(1:(n - n * perc), y_t, 'b', 'filled')
-    % legend('ymodel', 'yreal')
-    % title('Zbior testujacy');
+    %%--%%--%% Wykresy wyników (manual FIS)
+    figure;
+    subplot(2, 1, 1)
+    scatter(1:n*perc, y_out, 55, 'r', 'd')
+    hold on;
+    scatter(1:n*perc, y_train, 'b', 'filled')
+    legend('ymodel', 'yreal')
+    title('Zbior uczacy');
+    subplot(2, 1, 2)
+    scatter(1:(n - n * perc), y_test, 55, 'r', 'd')
+    hold on;
+    scatter(1:(n - n * perc), y_testing, 'b', 'filled')
+    legend('ymodel', 'yreal')
+    title('Zbior testujacy');
 
 
     %getting parameters from fis
@@ -123,8 +127,8 @@ for loop = 1:it
     end
     temp = y_temp - y_train;
     q = sum(temp == 0);
-    fprintf('Procent dobrze zkwalifikowanych przypadków (KH FIS) - set uczący: %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
-    PSO_u(loop) = round(q / size(y_out, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (KH) - teaching set:  %.0f%%\n', round(q / size(y_out, 1), 5) * 100);
+    KH_u(loop) = round(q / size(y_out, 1), 5) * 100;
 
     y_temp = y_test;
     for i = 1:size(y_temp, 1)
@@ -132,19 +136,30 @@ for loop = 1:it
     end
     temp = y_temp - y_testing;
     q = sum(temp == 0);
-    fprintf('Procent dobrze zkwalifikowanych przypadków (KH FIS) - set testujący: %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
-    PSO_t(loop) = round(q / size(y_test, 1), 5) * 100;
+    fprintf('Percentage of corectly qualified cases (KH) - testing set:  %.0f%%\n', round(q / size(y_test, 1), 5) * 100);
+    KH_t(loop) = round(q / size(y_test, 1), 5) * 100;
 
     fprintf('\n\n\n\n');
 end
 
-Glowna_srednia_wynosi = mean(PSO_t)
+Glowna_srednia_Manual = mean(Manual_t)
+wariancja=0;
+for i = 1:length(Manual_t)
+    wariancja = wariancja + (KH_t(i)-Glowna_srednia_KH)^2;
+end
+wariancja = wariancja/length(KH_t);
+odchylenie_standardowe_KH=sqrt(wariancja)   
+
+Glowna_srednia_KH = mean(KH_t)
+wariancja=0;
+for i = 1:length(KH_t)
+    wariancja = wariancja + (KH_t(i)-Glowna_srednia_KH)^2;
+end
+wariancja = wariancja/length(KH_t);
+odchylenie_standardowe_KH=sqrt(wariancja)   
 
 
 function fitness = cost(x, fis, x_u, y_u)
-%%% Funkcje przynależności są typu Gaussa, nie mogą przyjmować 0 jako
-%%% parameter odchylenia std, dlatego jeżeli jakaś wartość wektora jest 0,
-%%% randomizujemy wartość bliską do 0 i zmieniamy x(i)
 for i = 1:size(x, 2)
     if x(i) == 0
         x(i) = 0.001 + rand * (0.05 - 0.001);
