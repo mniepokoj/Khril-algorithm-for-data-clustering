@@ -1,0 +1,117 @@
+[System]
+Name='seed'
+Type='sugeno'
+Version=2.0
+NumInputs=7
+NumOutputs=1
+NumRules=7
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='in1'
+Range=[10.59 21.18]
+NumMFs=7
+MF1='in1cluster1':'gaussmf',[0.332 14.8]
+MF2='in1cluster2':'gaussmf',[1.87 16.8021353065539]
+MF3='in1cluster3':'gaussmf',[1.3 15.5]
+MF4='in1cluster4':'gaussmf',[0.89 11.3]
+MF5='in1cluster5':'gaussmf',[1.87206520319138 16.84]
+MF6='in1cluster6':'gaussmf',[0.187 13]
+MF7='in1cluster7':'gaussmf',[0.129 17.3]
+
+[Input2]
+Name='in2'
+Range=[12.41 17.25]
+NumMFs=7
+MF1='in2cluster1':'gaussmf',[0.337 14.5]
+MF2='in2cluster2':'gaussmf',[0.0760439286304385 13.4]
+MF3='in2cluster3':'gaussmf',[2.08399867786951 15.8]
+MF4='in2cluster4':'gaussmf',[0.183097978806277 13.1]
+MF5='in2cluster5':'gaussmf',[0.148 13.7251162790698]
+MF6='in2cluster6':'gaussmf',[0.204 13.9962790697674]
+MF7='in2cluster7':'gaussmf',[0.856 16.5848837209302]
+
+[Input3]
+Name='in3'
+Range=[0.8082 0.9183]
+NumMFs=7
+MF1='in3cluster1':'gaussmf',[0.00524918580311192 0.882]
+MF2='in3cluster2':'gaussmf',[0.00424 0.818429175475687]
+MF3='in3cluster3':'gaussmf',[0.0049852316706757 0.891]
+MF4='in3cluster4':'gaussmf',[0.00160949174564108 0.829]
+MF5='in3cluster5':'gaussmf',[0.0394660807166605 0.862]
+MF6='in3cluster6':'gaussmf',[0.0105218042690014 0.864]
+MF7='in3cluster7':'gaussmf',[0.0194631141521597 0.8859]
+
+[Input4]
+Name='in4'
+Range=[4.899 6.675]
+NumMFs=7
+MF1='in4cluster1':'gaussmf',[0.0421482676916714 5.54]
+MF2='in4cluster2':'gaussmf',[0.0340644479350189 5.24]
+MF3='in4cluster3':'gaussmf',[0.0562 5.93958139534884]
+MF4='in4cluster4':'gaussmf',[0.0333 5.83]
+MF5='in4cluster5':'gaussmf',[0.314 4.76643974630021]
+MF6='in4cluster6':'gaussmf',[0.0724940148901237 5.39]
+MF7='in4cluster7':'gaussmf',[0.688415720276159 6.56]
+
+[Input5]
+Name='in5'
+Range=[2.648 4.033]
+NumMFs=7
+MF1='in5cluster1':'gaussmf',[0.0826813874777219 3.29]
+MF2='in5cluster2':'gaussmf',[0.348224631527602 2.91]
+MF3='in5cluster3':'gaussmf',[0.0755 3.09559196617336]
+MF4='in5cluster4':'gaussmf',[0.042244332631028 2.67]
+MF5='in5cluster5':'gaussmf',[0.0879335360313 3.48]
+MF6='in5cluster6':'gaussmf',[0.0702019233931515 3.17]
+MF7='in5cluster7':'gaussmf',[0.573118939182303 3.62]
+
+[Input6]
+Name='in6'
+Range=[0.7651 8.456]
+NumMFs=7
+MF1='in6cluster1':'gaussmf',[0.255498711946877 2.7]
+MF2='in6cluster2':'gaussmf',[0.599 6.46972325581395]
+MF3='in6cluster3':'gaussmf',[0.459736723351782 3.24]
+MF4='in6cluster4':'gaussmf',[3.47509378674922 4.34]
+MF5='in6cluster5':'gaussmf',[2.4056855943508 2.9]
+MF6='in6cluster6':'gaussmf',[0.327 1.0123245243129]
+MF7='in6cluster7':'gaussmf',[0.377 2.22476553911205]
+
+[Input7]
+Name='in7'
+Range=[4.519 6.55]
+NumMFs=7
+MF1='in7cluster1':'gaussmf',[0.948339614275298 6.08]
+MF2='in7cluster2':'gaussmf',[0.148729175596103 5.16]
+MF3='in7cluster3':'gaussmf',[0.212 5.4445644820296]
+MF4='in7cluster4':'gaussmf',[0.121091202763051 5.13]
+MF5='in7cluster5':'gaussmf',[0.132978116754398 5.88]
+MF6='in7cluster6':'gaussmf',[0.146134524430318 4.83]
+MF7='in7cluster7':'gaussmf',[0.359 5.39711205073996]
+
+[Output1]
+Name='out1'
+Range=[1 3]
+NumMFs=7
+MF1='out1cluster1':'linear',[-4.90943905470751 12.233925284263 85.6395731595587 -3.42493991492551 -1.82300896374143 0.017214918205969 0.699992727246844 -158.180227475509]
+MF2='out1cluster2':'linear',[2.70468431492598 -1.22362239965015 -10.4487491616753 -4.00963249103082 -5.45270823681198 -0.415236260648043 -1.59749281076306 43.6885056389831]
+MF3='out1cluster3':'linear',[-2.04746746171662 5.7088401947075 59.7726690203235 -0.39973326338924 -0.796181399115452 -0.0360176911641299 0.0139197070050508 -100.281909410125]
+MF4='out1cluster4':'linear',[9.58650266437232 -16.7979790846443 -149.494604132587 -0.24375734692309 3.08968958403649 -0.0626313387071084 -0.493514507931503 234.14332252148]
+MF5='out1cluster5':'linear',[9.09010554405287 -19.0906158136642 -182.169402407365 -2.96504052410555 1.05997716149267 0.0580576282451396 2.78253646187893 302.647262016161]
+MF6='out1cluster6':'linear',[-4.67180774313749 -2.22101644859918 56.0790925667912 16.1077509739668 25.0088813961019 -0.797884340879905 2.6520550053858 -129.951305253552]
+MF7='out1cluster7':'linear',[13.2269475364181 -31.6181651719945 -311.264356023022 -1.17818508621501 2.88397573449287 0.0371006649978128 2.37905455301564 526.834037173873]
+
+[Rules]
+1 1 1 1 1 1 1, 1 (1) : 1
+2 2 2 2 2 2 2, 2 (1) : 1
+3 3 3 3 3 3 3, 3 (1) : 1
+4 4 4 4 4 4 4, 4 (1) : 1
+5 5 5 5 5 5 5, 5 (1) : 1
+6 6 6 6 6 6 6, 6 (1) : 1
+7 7 7 7 7 7 7, 7 (1) : 1
